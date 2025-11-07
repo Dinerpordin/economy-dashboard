@@ -1,0 +1,33 @@
+{
+  "name": "economy-dashboard",
+  "version": "1.0.0",
+  "description": "Advanced economy dashboard with global market data, South Asian indices, and Bangladesh economic indicators",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "fetch-data": "node scripts/fetchData.js"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.6.0",
+    "recharts": "^2.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0"
+  },
+  "keywords": [
+    "economy",
+    "finance",
+    "dashboard",
+    "bangladesh",
+    "south-asia",
+    "stock-market"
+  ],
+  "author": "Dinerpordin",
+  "license": "MIT"
+}
