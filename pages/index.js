@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import styles from '../styles/Dashboard.module.css';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function Home() {
   const [globalData, setGlobalData] = useState(null);
@@ -101,24 +100,6 @@ export default function Home() {
             ))}
           </div>
         </section>
-
-                                  {/* Economic Indices Charts */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Economic Trends</h2>
-        <div className={styles.chartContainer}>
-          <div className={styles.chartTitle}>Bangladesh Economic Indicators Overview</div>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={indicators}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#ddd" />
-              <XAxis dataKey="name" tick={{ fontSize: 11 }} />
-              <YAxis tick={{ fontSize: 11 }} />
-              <Tooltip contentStyle={{ fontSize: 12 }} />
-              <Legend wrapperStyle={{ fontSize: 12 }} />
-              <Bar dataKey="numValue" fill="#4F46E5" name="Value" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </section>
 
         {/* FX Rates */}
         <section className={styles.section}>
