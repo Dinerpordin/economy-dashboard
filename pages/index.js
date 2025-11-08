@@ -44,7 +44,7 @@ export default function Home() {
   // Process Bangladesh data to create proper indicators array
   const indicators = bangladeshData ? [
     { name: 'GDP GROWTH (BD)', value: bangladeshData.gdp || 'N/A' , numValue: parseFloat(bangladeshData.gdp) || 0 },
-    { name: 'INFLATION RATE (BD)', value: bangladeshData.inflation || 'N/A' EXCHANGE RATE parseFloat(bangladeshData.inflation) || 0 },
+    { name: 'INFLATION RATE (BD)', value: bangladeshData.inflation || 'N/A' , numValue: parseFloat(bangladeshData.inflation) || 0 },
     { name: 'EXCHANGE RATE', value: `USD/BDT: ${bangladeshData.exchangeRate || 'N/A'}` , numValue: parseFloat(bangladeshData.exchangeRate) || 0 }, },
     { name: 'FOREX RESERVES', value: bangladeshData.reserves || 'N/A' , numValue: parseFloat(bangladeshData.reserves) || 0},
   ] : [];
