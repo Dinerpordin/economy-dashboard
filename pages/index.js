@@ -61,37 +61,7 @@ export default function Home() {
           <p>Real-time global markets and South Asian economic indicators</p>
         </div>
 
-        {/* Global Markets */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Global Markets</h2>
-          <div className={styles.grid}>
-            {globalData?.indices?.map((market) => (
-              <div key={market.symbol} className={styles.card}>
-                <div className={styles.cardLabel}>{market.symbol}</div>
-                <div className={styles.cardValue}>{market.price}</div>
-                <div className={`${styles.cardChange} ${parseFloat(market.change) >= 0 ? styles.positive : styles.negative}`}>
-                  {parseFloat(market.change) >= 0 ? '▲' : '▼'} {Math.abs(parseFloat(market.change)).toFixed(2)}%
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* FX Rates */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Foreign Exchange Rates</h2>
-          <div className={styles.fxGrid}>
-            {fxRates?.rates?.map((rate) => (
-              <div key={rate.pair} className={styles.fxCard}>
-                <div className={styles.fxPair}>{rate.pair}</div>
-                <div className={styles.fxRate}>{rate.rate}</div>
-                <div className={styles.cardLabel}>Last updated: {new Date(rate.lastUpdated).toLocaleTimeString()}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Bangladesh Market */}
+        {/* Bangladesh Market - Moved to Top */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Bangladesh Market</h2>
           <div className={styles.grid}>
@@ -118,7 +88,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Economic Indicators */}
+        {/* Economic Indicators - Moved up */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Economic Indicators</h2>
           <div className={styles.grid}>
@@ -126,6 +96,36 @@ export default function Home() {
               <div key={indicator.name} className={styles.card}>
                 <div className={styles.cardLabel}>{indicator.name}</div>
                 <div className={styles.cardValue}>{indicator.value}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* FX Rates */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Foreign Exchange Rates</h2>
+          <div className={styles.fxGrid}>
+            {fxRates?.rates?.map((rate) => (
+              <div key={rate.pair} className={styles.fxCard}>
+                <div className={styles.fxPair}>{rate.pair}</div>
+                <div className={styles.fxRate}>{rate.rate}</div>
+                <div className={styles.cardLabel}>Last updated: {new Date(rate.lastUpdated).toLocaleTimeString()}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Global Markets - Moved down */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Global Markets</h2>
+          <div className={styles.grid}>
+            {globalData?.indices?.map((market) => (
+              <div key={market.symbol} className={styles.card}>
+                <div className={styles.cardLabel}>{market.symbol}</div>
+                <div className={styles.cardValue}>{market.price}</div>
+                <div className={`${styles.cardChange} ${parseFloat(market.change) >= 0 ? styles.positive : styles.negative}`}>
+                  {parseFloat(market.change) >= 0 ? '▲' : '▼'} {Math.abs(parseFloat(market.change)).toFixed(2)}%
+                </div>
               </div>
             ))}
           </div>
