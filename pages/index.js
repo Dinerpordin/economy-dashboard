@@ -40,6 +40,14 @@ export default function Home() {
     return <div className={styles.loading}>Loading economy dashboard...</div>;
   }
 
+  // Process Bangladesh data to create proper indicators array
+  const indicators = bangladeshData ? [
+    { name: 'GDP GROWTH (BD)', value: bangladeshData.gdp || 'N/A' },
+    { name: 'INFLATION RATE (BD)', value: bangladeshData.inflation || 'N/A' },
+    { name: 'EXCHANGE RATE', value: `USD/BDT: ${bangladeshData.exchangeRate || 'N/A'}` },
+    { name: 'FOREX RESERVES', value: bangladeshData.reserves || 'N/A' }
+  ] : [];
+
   return (
     <div className={styles.container}>
       <Head>
@@ -57,12 +65,12 @@ export default function Home() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Global Markets</h2>
           <div className={styles.grid}>
-            {globalData?.markets?.map((market) => (
+            {globalData?.indices?.map((market) => (
               <div key={market.symbol} className={styles.card}>
                 <div className={styles.cardLabel}>{market.symbol}</div>
                 <div className={styles.cardValue}>{market.price}</div>
-                <div className={`${styles.cardChange} ${parseFloat(market.changePercent) >= 0 ? styles.positive : styles.negative}`}>
-                  {parseFloat(market.changePercent) >= 0 ? '▲' : '▼'} {Math.abs(parseFloat(market.changePercent)).toFixed(2)}%
+                <div className={`${styles.cardChange} ${parseFloat(market.change) >= 0 ? styles.positive : styles.negative}`}>
+                  {parseFloat(market.change) >= 0 ? '▲' : '▼'} {Math.abs(parseFloat(market.change)).toFixed(2)}%
                 </div>
               </div>
             ))}
@@ -87,12 +95,23 @@ export default function Home() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Bangladesh Market</h2>
           <div className={styles.grid}>
-            {bangladeshData?.stocks?.map((stock) => (
+            {/* DSEX Index */}
+            {bangladeshData?.dsex && (
+              <div className={styles.card}>
+                <div className={styles.cardLabel}>DSEX INDEX</div>
+                <div className={styles.cardValue}>{bangladeshData.dsex.value}</div>
+                <div className={`${styles.cardChange} ${parseFloat(bangladeshData.dsex.change) >= 0 ? styles.positive : styles.negative}`}>
+                  {parseFloat(bangladeshData.dsex.change) >= 0 ? '▲' : '▼'} {Math.abs(parseFloat(bangladeshData.dsex.change)).toFixed(1)}%
+                </div>
+              </div>
+            )}
+            {/* Top Stocks */}
+            {bangladeshData?.topStocks?.map((stock) => (
               <div key={stock.symbol} className={styles.card}>
                 <div className={styles.cardLabel}>{stock.symbol}</div>
                 <div className={styles.cardValue}>{stock.price}</div>
-                <div className={`${styles.cardChange} ${parseFloat(stock.changePercent) >= 0 ? styles.positive : styles.negative}`}>
-                  {parseFloat(stock.changePercent) >= 0 ? '▲' : '▼'} {Math.abs(parseFloat(stock.changePercent)).toFixed(1)}%
+                <div className={`${styles.cardChange} ${parseFloat(stock.change) >= 0 ? styles.positive : styles.negative}`}>
+                  {parseFloat(stock.change) >= 0 ? '▲' : '▼'} {Math.abs(parseFloat(stock.change)).toFixed(1)}%
                 </div>
               </div>
             ))}
@@ -103,7 +122,7 @@ export default function Home() {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Economic Indicators</h2>
           <div className={styles.grid}>
-            {bangladeshData?.indicators?.map((indicator) => (
+            {indicators.map((indicator) => (
               <div key={indicator.name} className={styles.card}>
                 <div className={styles.cardLabel}>{indicator.name}</div>
                 <div className={styles.cardValue}>{indicator.value}</div>
